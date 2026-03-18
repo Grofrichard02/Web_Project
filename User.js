@@ -145,7 +145,48 @@ router.delete("/deleteUser/:id", auth(), async (req, res) => {
     }
 });
 
+router.put("/EditUser", auth(), async (req, res) => {
+    try {
+        const Id = req.uid;
+        const oneuser = await dbhandler.User.findOne({ 
+            where: { Id },
+            attributes: ["Id", "Password"]
+        });
+        if (!oneuser) {
+            return res.status(404).json({ message: "Felhasználó nem található" });
+        }
 
+        const updateData = {};
+        if (req.body.Password || req.body.OldPassword) {
+            
+            if (!req.body.OldPassword) {
+                return res.status(400).json({ message: "A jelszó módosításához kötelező megadni a régi jelszót!" });
+            }
+            const isMatch = await bcrypt.compare(req.body.OldPassword, oneuser.Password);
+            if (!isMatch) {
+                return res.status(401).json({ message: "A megadott régi jelszó hibás! A módosítás elutasítva." });
+            }
+            if(isMatch){
+                updateData.Password = await bcrypt.hash(req.body.Password, 15);
+            
+            }
+        }
+
+        if (req.body.Username) updateData.Username = req.body.Username;
+        if (req.body.Email) updateData.Email = req.body.Email;
+
+        if (Object.keys(updateData).length === 0) {
+            return res.status(400).json({ message: "Nincs módosítandó adat." });
+        }
+
+        await dbhandler.User.update(updateData, { where: { Id } });
+        return res.status(200).json({ message: "Sikeres adatmódosítás!" });
+
+    } catch (err) {
+        console.error("EDIT USER ERROR:", err);
+        return res.status(500).json({ message: "Hiba történt a szerveren." });
+    }
+});
 
 
 
