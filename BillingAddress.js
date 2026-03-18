@@ -20,6 +20,21 @@ router.post("/BillingAddressRegister", auth(), async (req, res) => {
 });
 
 
+router.get("/BillingAddressGets", auth(), async (req, res) => {
+    try {
+        const address = await dbhandler.BillingAddress.findOne({
+            where: { UserId: req.uid }
+        });
+
+        if (address) {
+            return res.status(200).json(address);
+        } else {
+            return res.status(404).json({ message: "Nincs ilyen számlázási cím" });
+        }
+    } catch (err) {
+        return res.status(500).json({ message: "Szerver hiba" });
+    }
+});
 
 
 
