@@ -64,7 +64,25 @@ router.post("/UserLogin", async (req, res) => {
     }
 });
 
+router.post("/UserRegister", async (req, res) => {
+    try {
+        const oneuser = await dbhandler.User.findOne({ where: { Email: req.body.Email } });
+        if (oneuser) return res.status(409).json({ message: "Van már ilyen felhasználó" });
 
+        const hashedpassword = await bcrypt.hash(req.body.Password, 15);
+        await dbhandler.User.create({
+            Username: req.body.Username,
+            Password: hashedpassword,
+            Email: req.body.Email,
+            Pfp: "/uploads/default-avatar.png"
+        });
+        return res.status(201).json({ message: "Sikeres regisztráció" });
+    } catch (err) {
+        console.log("HIBA:");
+        console.error(err);
+        res.status(500).send("Szerver hiba");
+    }
+});
 
 
 
