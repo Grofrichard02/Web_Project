@@ -60,5 +60,14 @@ router.put("/updateproduct/:id", Auth(), async (req, res) => {
 });
 
 
-
+router.delete("/deleteproduct/:id", Auth(), async (req, res) => {
+    try {
+        await dbhandler.Products.destroy({
+            where: { Id: req.params.id }
+        });
+        res.status(200).json({ message: "Termék törölve" });
+    } catch (err) {
+        res.status(500).json({ message: "Hiba a törlés során" });
+    }
+});
 module.exports = router
