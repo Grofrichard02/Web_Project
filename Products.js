@@ -46,6 +46,18 @@ router.get("/getproduct", async (req, res) => {
     }
 });
 
+router.put("/updateproduct/:id", Auth(), async (req, res) => {
+    try {
+        const { Name, Description, Price, Ammount, IMGURL } = req.body;
+        await dbhandler.Products.update(
+            { Name, Description, Price, Ammount, IMGURL },
+            { where: { Id: req.params.id } }
+        );
+        res.status(200).json({ message: "Termék sikeresen frissítve" });
+    } catch (err) {
+        res.status(500).json({ message: "Hiba a frissítés során" });
+    }
+});
 
 
 
