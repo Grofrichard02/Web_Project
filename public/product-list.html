@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="auth-check.js?v=SessionFix"></script>
+    <title>Notrox - Terméklista</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <script src="auth-check.js?v=prod"></script>
+    <link rel="icon" type="image/png" href="img/Notrox.png">
+    <link rel="stylesheet" href="styles/product-list.css">
+
+</head>
+<body>
+
+<header>
+    <div class="logo">NOTROX ADMINPANEL</div>
+    <nav>
+        <button onclick="goToGetUsers()">USER</button>
+        <button class="active">PRODUCTS</button>
+        <button onclick="alert('Fejlesztés alatt...')">ORDERS</button>
+        <button onclick="goToProductAdd()">PRODUCT ADD</button>
+        <button onclick="logout()" style="color: #ff4d4d;">LOGOUT</button>
+    </nav>
+</header>
+
+<div class="container">
+    <div class="search-container">
+        <input type="text" id="pSearch" placeholder="Keresés termék név vagy leírás alapján..." oninput="filterProducts()">
+    </div>
+
+    <div id="productList">
+    </div>
+</div>
+
+<div id="deleteModal" class="modal">
+    <div class="modal-content">
+        <h2 style="color: #ef4444;">Törlés megerősítése</h2>
+        <p>Biztosan törölni szeretnéd ezt a terméket?</p>
+        <p><strong id="deleteTargetName"></strong></p>
+        <div class="modal-btns">
+            <button class="btn btn-cancel" onclick="closeModal()">Mégse</button>
+            <button class="btn btn-delete" id="confirmDeleteBtn">Törlés</button>
+        </div>
+    </div>
+</div>
+
+<script src="script/product-list.js"></script>
+</body>
+</html>

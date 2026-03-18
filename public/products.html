@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/products.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="img/Notrox.png">
+    <title>NOTROX</title>
+
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <div class="header-logo">
+                <a href="/" style="text-decoration: none;"><h2>NOTROX</h2></a>
+            </div>
+            <div class="header-menu-center">
+                <ul class="menu">
+                    <li><a href="products">Termékek</a></li>
+                    <li><a href="aboutus">Rólunk</a></li>
+                    <li><a href="contact">Kapcsolat</a></li>
+                </ul>
+            </div>
+            <div class="header-actions-right">
+                <ul id="navButtons" class="d-flex gap-2 p-0 m-0"></ul>
+                <ul id="LoggedInNavButtons" class="d-flex gap-2 p-0 m-0"></ul>
+            </div>
+        </div>
+    </header>
+<section id="catalog-header" class="text-center">
+    <div class="container">
+        <h1 id="h1pad" class="bebas-font display-4 mb-2" style="letter-spacing: 4px; color: white;">TERMÉKKATALÓGUS</h1>
+        <p class="text-secondary small fw-light mb-0" style="letter-spacing: 2px;">NOTROX PREMIUM HARDWARE SOLUTIONS</p>
+    </div>
+</section>
+
+<button class="filter-fab d-lg-none" onclick="toggleFilters()">
+    <i class="fa-solid fa-filter"></i>
+</button>
+
+<main class="container-fluid px-lg-5 py-5">
+    <div class="row g-4">
+        
+        <aside class="col-lg-3" id="filterSidebar">
+            <div class="glass-sidebar p-4">
+                <div class="d-flex justify-content-between align-items-center mb-4 d-lg-none">
+                    <h5 class="text-white m-0">SZŰRÉS</h5>
+                    <button class="btn-close btn-close-white" onclick="toggleFilters()"></button>
+                </div>
+
+                <div class="filter-section">
+                    <label class="section-title">Keresés</label>
+                    <div class="search-field">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" id="pSearch" placeholder="Modell megnevezése...">
+                    </div>
+                </div>
+
+                <div class="filter-section">
+                    <label class="section-title">Márkák</label>
+                    <div id="brandFilters" class="brand-selector">
+
+                    </div>
+                </div>
+
+                <div class="filter-section">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <label class="section-title m-0">Árkeret</label>
+                        <span id="priceDisplay" class="price-indicator">0 Ft</span>
+                    </div>
+                    <input type="range" id="priceRange" class="premium-range" min="0" max="500000" step="500">
+                    <div class="d-flex justify-content-between mt-2 small">
+                        <span>0 Ft</span>
+                        <span id="maxPriceLabel">500.000 Ft</span>
+                    </div>
+                </div>
+
+                <button id="resetFilters" class="reset-link">Szűrők alaphelyzetbe</button>
+            </div>
+        </aside>
+
+        <div class="col-lg-9">
+            <div id="productGrid" class="row row-cols-1 row-cols-sm-2 row-cols-xl-3 row-cols-xxl-4 g-4">
+
+            </div>
+        </div>
+
+    </div>
+</main>
+<section id="product-details-view" class="details-overlay" style="display: none;">
+    <div class="container py-5">
+        <button class="back-to-catalog" onclick="closeDetails()">
+            <i class="fa-solid fa-arrow-left"></i> Vissza a katalógushoz
+        </button>
+
+        <div class="details-card">
+            <div class="row g-0">
+
+                <div class="col-lg-6 details-img-container">
+                    <img id="det-img" src="" alt="Termék kép">
+                </div>
+                
+                <div class="col-lg-6 p-5 d-flex flex-column">
+                    <div class="mb-auto">
+                        <span id="det-brand" class="p-brand">Márka</span>
+                        <h1 id="det-name" class="bebas-font display-4 text-white">Termék neve</h1>
+                        <div class="title-separator mb-4" style="margin: 0;"></div>
+                        
+                        <p id="det-desc" class="text-secondary lh-lg mb-4">
+                            Hosszú leírás helye...
+                        </p>
+                    </div>
+
+                    <div class="details-footer">
+                        <div class="price-stock-row mb-4">
+                            <span id="det-price" class="p-price" style="font-size: 2.5rem;">0 Ft</span>
+                            <div id="det-stock" class="stock-status">
+                            </div>
+                        </div>
+
+                        <div class="d-flex gap-3">
+                            <button class="btn-cart-lg flex-grow-1" onclick="addToCart(p.Id)">
+                                <i class="fa-solid fa-cart-shopping me-2"></i> KOSÁRBA TESZEM
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="products-logic.js"></script>
+    <footer id="notrox-footer-fixed">
+        <div class="ft-container">
+            <div class="ft-row">
+                
+                <div class="ft-col">
+                    <h2 class="ft-heading">Termékek:</h2>
+                    <ul class="ft-ul">
+                        <li><a href="products">Egér</a></li>
+                        <li><a href="products">Egérpad</a></li>
+                        <li><a href="products">Billentyűzet</a></li>
+                        <li><a href="products">Fejhallgató</a></li>
+                        <li><a href="products">Mikrofon</a></li>
+                        <li><a href="products">Gamer székek</a></li>
+                    </ul>
+                    <div class="ft-copy d-none d-lg-block">
+                        © NOTROX GROUP Kft. 2025-2026<br>
+                        Minden jog fenntartva!
+                    </div>
+                </div>
+
+                <div class="ft-col">
+                    <h2 class="ft-heading">ADATVÉDELEM:</h2>
+                    <ul class="ft-ul">
+                        <li><a href="adatvedelmi">ADATVÉDELMI TÁJÉKOZTATÓ</a></li>
+                        <li><a href="aszf">ÁSZF</a></li>
+                    </ul>
+                </div>
+
+                <div class="ft-col">
+                    <div class="contact-group">
+                        <h2 class="ft-heading">Telefonszám:</h2>
+                        <h3>+36201111111</h3>
+                    </div>
+                    <div class="contact-group">
+                        <h2 class="ft-heading">E-mail cím:</h2>
+                        <h3>info@notrox.hu</h3>
+                    </div>
+                    <div class="contact-group">
+                        <h2 class="ft-heading">Bejelentett cím:</h2>
+                        <h3>Budapest, Egressy út 71, 1149</h3>
+                    </div>
+                </div>
+
+                <div class="ft-col">
+                    <div class="map-wrapper shadow">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2694.8029868471126!2d19.115586376824876!3d47.513227894420076!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4741db67371f7b39%3A0xc24d80a4421104d0!2sBudapesti%20M%C5%B1szaki%20SZC%20Egressy%20G%C3%A1bor%20K%C3%A9t%20Tan%C3%ADt%C3%A1si%20Nyelv%C5%B1%20Technikum!5e0!3m2!1shu!2shu!4v1765362759528!5m2!1shu!2shu" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </footer>
+<script src="script/script.js"></script>
+</body>
+</html>

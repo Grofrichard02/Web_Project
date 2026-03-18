@@ -1,0 +1,230 @@
+#profileMainSection {
+    padding: 60px 0;
+    min-height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    background-color: #fcfcfc;
+}
+
+.profile-grid {
+    display: flex;
+    gap: 40px;
+    max-width: 1100px;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.container {
+    flex: 1;
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.profile-sidebar {
+    width: 280px;
+    background: white;
+    border-radius: 15px;
+    padding: 20px 0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    height: fit-content;
+    position: sticky;
+    top: 100px;
+}
+
+.sidebar-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px;
+    padding: 0 25px 15px 25px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #eee;
+    color: #333;
+    letter-spacing: 1px;
+}
+
+.sidebar-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-menu li {
+    border-bottom: 1px solid #f9f9f9;
+}
+
+.sidebar-menu li:last-child {
+    border-bottom: none;
+}
+
+.sidebar-menu a {
+    display: block;
+    padding: 15px 25px;
+    text-decoration: none;
+    color: #555;
+    font-family: 'Jost', sans-serif;
+    font-size: 16px;
+    transition: all 0.2s ease;
+}
+
+.sidebar-menu li.active a {
+    background-color: #f4f4f4;
+    color: #000;
+    font-weight: 600;
+    border-left: 4px solid #6366f1;
+}
+
+.sidebar-menu a:hover {
+    background-color: #f9f9f9;
+    padding-left: 30px;
+    color: #6366f1;
+}
+
+.sidebar-menu a.delete-account {
+    color: #ef4444;
+}
+
+.sidebar-menu a.delete-account:hover {
+    background-color: #fef2f2;
+}
+
+.section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    margin-bottom: 20px;
+    color: #333;
+    border-bottom: 2px solid #6366f1;
+    display: inline-block;
+}
+
+.address-form-group {
+    margin-bottom: 25px;
+}
+
+.billing-toggle-container {
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Jost', sans-serif;
+    background: #f1f5f9;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+#billingAddressSection {
+    display: block;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px dashed #ccc;
+}
+
+.input-label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    font-size: 14px;
+    color: #475569;
+}
+
+.container input[type="text"],
+.container input[type="number"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-family: 'Jost', sans-serif;
+}
+
+#saveAllAddressesBtn {
+    width: 100%;
+    background-color: #10b981;
+    color: white;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+@media (max-width: 900px) {
+    .profile-grid {
+        flex-direction: column-reverse;
+    }
+
+    .profile-sidebar {
+        width: 100%;
+        position: static;
+    }
+}
+
+.profile-sidebar {
+    width: 280px;
+    background: white;
+    border-radius: 15px;
+    padding: 20px 0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    height: fit-content;
+    position: sticky;
+    top: 100px;
+}
+
+.sidebar-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px;
+    padding: 0 25px 15px 25px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #eee;
+    color: #333;
+    letter-spacing: 1px;
+}
+
+.sidebar-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-menu li {
+    border-bottom: 1px solid #f9f9f9;
+}
+
+.sidebar-menu li:last-child {
+    border-bottom: none;
+}
+
+.sidebar-menu a {
+    display: block;
+    padding: 15px 25px;
+    text-decoration: none;
+    color: #555;
+    font-family: 'Jost', sans-serif;
+    font-size: 16px;
+    transition: all 0.2s ease;
+}
+
+.sidebar-menu li.active a {
+    background-color: #f4f4f4;
+    color: #000;
+    font-weight: 600;
+    border-left: 4px solid #6366f1;
+}
+
+.sidebar-menu a:hover {
+    background-color: #f9f9f9;
+    padding-left: 30px;
+    color: #6366f1;
+}
+
+.sidebar-menu a.delete-account {
+    color: #ef4444;
+}
+
+.sidebar-menu a.delete-account:hover {
+    background-color: #fef2f2;
+}

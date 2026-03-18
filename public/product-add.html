@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notrox - Termék Hozzáadása</title>
+        <script src="auth-check.js?v=SessionFix"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="icon" type="image/png" href="img/Notrox.png">
+    <link rel="stylesheet" href="styles/product-add.css">
+    <script src="auth-check.js?v=prod"></script>
+</head>
+<body>
+
+<header>
+    <div class="logo">NOTROX ADMINPANEL</div>
+    <nav>
+        <button onclick="goToGetUsers()">USER</button>
+        <button onclick="goToListProd()">PRODUCTS</button>
+        <button onclick="alert('Fejlesztés alatt...')">ORDERS</button>
+        <button class="active">PRODUCT ADD</button>
+        <button onclick="logout()" style="color: #ff4d4d;">LOGOUT</button>
+    </nav>
+</header>
+
+
+<div class="container">
+    <div class="form-card">
+        <h1>Új termék felvétele</h1>
+        
+        <form id="productForm">
+            <div class="form-group">
+                <label for="pName">Termék neve</label>
+                <input type="text" id="pName" class="admin-input" placeholder="pl. Logitech G Pro X Superlight">
+            </div>
+
+            <div class="form-group">
+                <label for="pDesc">Rövid leírás</label>
+                <textarea id="pDesc" class="admin-input" placeholder="A termék főbb jellemzői..."></textarea>
+            </div>
+
+            <div class="row">
+                <div class="form-group">
+                    <label for="pPrice">Ár (Ft)</label>
+                    <input type="number" id="pPrice" class="admin-input" placeholder="0">
+                </div>
+                <div class="form-group">
+                    <label for="pAmount">Készlet (db)</label>
+                    <input type="number" id="pAmount" class="admin-input" placeholder="0">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="pCompany">Gyártó kiválasztása</label>
+                <select id="pCompany" class="admin-input">
+                    <option value="">Cégek betöltése...</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="pImg">Kép URL címe</label>
+                <input type="text" id="pImg" class="admin-input" placeholder="https://notrox.hu/img/termek.jpg">
+            </div>
+
+            <button type="button" id="submitProductBtn" class="submit-btn" disabled>
+                Termék mentése az adatbázisba
+            </button>
+        </form>
+
+        <a href="adminpanel" class="back-link"><i class="fa-solid fa-arrow-left"></i> Vissza az admin panelhez</a>
+    </div>
+</div>
+
+<script src="script/product-add.js"></script>
+</body>
+</html>

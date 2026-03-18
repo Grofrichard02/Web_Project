@@ -1,0 +1,112 @@
+.premium-bg {
+    background: radial-gradient(circle at top right, #111827, #0b0e14);
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+#titlesection h1 important {
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 400;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 60px;
+    padding-top: 70px;
+    text-align: center;
+    transition: 300ms ease-in-out;
+}
+.cart-item {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    transition: 0.3s;
+}
+
+.cart-item:hover {
+    border-color: #2563eb;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.cart-img-box {
+    width: 100px;
+    height: 100px;
+    background: #0f172a;
+    border-radius: 12px;
+    padding: 10px;
+    flex-shrink: 0;
+}
+
+.cart-img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+.border-secondary{
+    color:rgb(108, 117, 125);
+}
+.qty-control {
+    display: flex;
+    align-items: center;
+    background: rgba(0,0,0,0.3);
+    border-radius: 10px;
+    padding: 5px 10px;
+    gap: 15px;
+}
+
+.qty-btn {
+    background: none;
+    border: none;
+    color: #2563eb;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.qty-btn:hover { transform: scale(1.2); }
+
+.remove-item {
+    color: #ef4444;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-left: auto;
+}
+
+.remove-item:hover { transform: rotate(90deg); color: #ff0000; }
+
+.form-control {
+    background: rgba(0,0,0,0.2) !important;
+    border: 1px solid rgba(255,255,255,0.05) !important;
+    color: white !important;
+}
+.input-group-text {
+    background: rgba(0, 0, 0, 0.2) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    color: var(--text-dim) !important;
+}
+
+#cardNumber {
+    letter-spacing: 2px;
+}
+#cardExpiry{
+    padding: 12px 18px 12px 18px;
+}
+#nextbtn{
+    background: rgb(38, 70, 255);
+    color: white;
+}
+.textC{
+    color: rgb(38, 70, 255);
+}
+.form-control:focus {
+    border-color: #2563eb !important;
+    box-shadow: none !important;
+}
+
+@media (max-width: 768px) {
+    .cart-item { flex-wrap: wrap; text-align: center; justify-content: center; }
+    .remove-item { margin-left: 0; width: 100%; text-align: right; }
+}
