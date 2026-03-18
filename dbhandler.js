@@ -134,7 +134,21 @@ const BillingAddressTable = dbhandler.define("BillingAddress", {
     }
 });
 
-
+const LogTable = dbhandler.define("Log", {
+    Id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
+    Message: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    OrderId: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    }
+});
 
 
 
