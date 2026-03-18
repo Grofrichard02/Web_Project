@@ -199,7 +199,82 @@ const OrderItemTable = dbhandler.define("OrderItem", {
     }
 });
 
+UserTable.hasMany(OrderTable, { foreignKey: "UserId" });
+OrderTable.belongsTo(UserTable, { foreignKey: "UserId" });
 
+AddressTable.hasMany(OrderTable, { foreignKey: "AddressId" });
+OrderTable.belongsTo(AddressTable, { foreignKey: "AddressId" });
+
+OrderTable.hasMany(OrderItemTable, { foreignKey: "OrderId", onDelete: "CASCADE" });
+OrderItemTable.belongsTo(OrderTable, { foreignKey: "OrderId" });
+
+ProductsTable.hasMany(OrderItemTable, { foreignKey: "ProductId" });
+OrderItemTable.belongsTo(ProductsTable, { foreignKey: "ProductId" });
+
+UserTable.hasMany(OrderTable, {
+    foreignKey: {
+        name: "UserId",
+        allowNull: false
+    },
+    onDelete: "CASCADE",
+    onUpdate: "CASCADE"
+});
+
+OrderTable.belongsTo(UserTable, {
+    foreignKey: "UserId"
+});
+
+UserTable.hasMany(AddressTable, {
+    foreignKey: {
+        name: "UserId",
+        allowNull: false
+    },
+    onDelete: "CASCADE",
+    onUpdate: "CASCADE"
+});
+
+AddressTable.belongsTo(UserTable, {
+    foreignKey: "UserId"
+});
+
+CompanyTable.hasMany(ProductsTable, {
+    foreignKey: {
+        name: "CompanyId",
+        allowNull: false
+    },
+    onDelete: "RESTRICT",
+    onUpdate: "CASCADE"
+});
+
+ProductsTable.belongsTo(CompanyTable, {
+    foreignKey: "CompanyId"
+});
+
+AddressTable.hasMany(OrderTable, {
+    foreignKey: {
+        name: "AddressId",
+        allowNull: false
+    },
+    onDelete: "RESTRICT",
+    onUpdate: "CASCADE"
+});
+
+OrderTable.belongsTo(AddressTable, {
+    foreignKey: "AddressId"
+});
+
+OrderTable.hasMany(LogTable, {
+    foreignKey: {
+        name: "OrderId",
+        allowNull: false
+    },
+    onDelete: "CASCADE",
+    onUpdate: "CASCADE"
+});
+
+LogTable.belongsTo(OrderTable, {
+    foreignKey: "OrderId"
+});
 
 
 
