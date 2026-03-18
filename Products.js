@@ -27,7 +27,24 @@ router.post("/postproduct", Auth(), async (req, res) => {
     }
 });
 
+router.get("/getproduct", async (req, res) => {
+    try {
+        const products = await dbhandler.Products.findAll({
+            include: [{
+                model: dbhandler.Company, 
+                as: 'Company',
+                attributes: ['Name']
+            }]
+        });
+        if (products.length > 0) {
+            console.log("Adatstruktúra teszt:", JSON.stringify(products[0], null, 2));
+        }
 
+        res.status(200).json(products);
+    } catch (err) {
+        res.status(500).json({ message: "Szerver hiba" });
+    }
+});
 
 
 
