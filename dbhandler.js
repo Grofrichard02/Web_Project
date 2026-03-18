@@ -150,7 +150,30 @@ const LogTable = dbhandler.define("Log", {
     }
 });
 
-
+const OrderTable = dbhandler.define("Order", {
+    Id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
+    Date: {
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW
+    },
+    Phase: { 
+        type: DataTypes.STRING,
+        allowNull: false,
+        defaultValue: "Feldolgozás alatt"
+    },
+    UserId: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
+    AddressId: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    }
+});
 
 
 
