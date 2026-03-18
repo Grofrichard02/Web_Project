@@ -97,6 +97,25 @@ router.get("/getUser", auth(), async (req, res) => {
     }
 });
 
+router.get("/getAllUsers", auth(), async (req, res) => {
+
+    try {
+        const requester = await dbhandler.User.findOne({ where: { Id: req.uid } });
+        if (!requester || requester.isAdmin !== true) {
+            return res.status(403).json({ message: "Nincs admin jogosultságod!" });
+        }
+        const users = await dbhandler.User.findAll({
+            attributes: ["Id", "Username", "Email", "Pfp", "isAdmin"]
+        });
+
+        console.log("Lekérdezés sikeres, userek száma:", users.length);
+        return res.status(200).json(users);
+
+    } catch (err) {
+        console.error("HIBA a getAllUsersnél:", err);
+        return res.status(500).json({ message: "Szerver hiba történt a lekérdezés során" });
+    }
+});
 
 
 
