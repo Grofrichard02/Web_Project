@@ -189,5 +189,15 @@ router.put("/EditUser", auth(), async (req, res) => {
 });
 
 
+router.post("/UploadProfilePic", auth(), upload.single('profileImage'), async (req, res) => {
+    try {
+        if (!req.file) return res.status(400).json({ message: "Nem érkezett fájl" });
+        const filePath = `/uploads/${req.file.filename}`;
+        await dbhandler.User.update({ Pfp: filePath }, { where: { Id: req.uid } });
+        return res.status(200).json({ message: "Sikeres képfeltöltés", Pfp: filePath });
+    } catch (err) {
+        return res.status(500).json({ message: "Szerver hiba" });
+    }
+});
 
 module.exports = router;
