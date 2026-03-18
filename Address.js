@@ -20,6 +20,21 @@ router.post("/AddressRegister", auth(), async (req, res) => {
 });
 
 
+router.get("/AddressGets", auth(), async (req, res) => {
+    try {
+        const address = await dbhandler.Address.findOne({
+            where: { UserId: req.uid } 
+        });
+
+        if (address) {
+            return res.status(200).json(address);
+        } else {
+            return res.status(404).json({ message: "Nincs ilyen Lakhely" });
+        }
+    } catch (err) {
+        return res.status(500).json({ message: "Szerver hiba" });
+    }
+});
 
 
 
