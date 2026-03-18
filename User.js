@@ -45,7 +45,24 @@ router.get("/getMyAddresses", Auth(), async (req, res) => {
     }
 });
 
-
+router.post("/UserLogin", async (req, res) => {
+    try {
+        const oneuser = await dbhandler.User.findOne({
+            where: { Username: req.body.Username }
+        });
+        if (!oneuser) {
+            return res.status(409).json({ message: "Nincs ilyen felhasználó" });
+        }
+        const match = await bcrypt.compare(req.body.Password, oneuser.Password);
+        if (!match) {
+            return res.status(401).json({ message: "Hibás felhasználónév vagy jelszó" });
+        }
+        const token = jwt.sign({ uid: oneuser.Id }, sk, { expiresIn: expiresin || "6h" });
+        return res.status(200).json({ message: "Sikeres bejelentkezés", token });
+    } catch (err) {
+        return res.status(500).json({ message: "Szerver hiba" });
+    }
+});
 
 
 
