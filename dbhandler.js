@@ -54,6 +54,37 @@ const CompanyTable = dbhandler.define("Company", {
 });
 
 
+const ProductsTable = dbhandler.define("Product", {
+    Id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
+    Name: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    Description: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    Price: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
+    Ammount: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
+    CompanyId: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
+    IMGURL: {
+        type: DataTypes.STRING,
+        allowNull: false
+    }
+});
 
 
 
