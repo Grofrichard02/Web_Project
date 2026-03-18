@@ -48,6 +48,6 @@ db.dbhandler.sync()
   .catch((error) => {
     console.error("KRITIKUS HIBA");
     console.error(error);
-  });
+});
 
 module.exports = server;
