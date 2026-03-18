@@ -118,6 +118,19 @@ router.get("/getAllUsers", auth(), async (req, res) => {
 });
 
 
+router.get("/getUserAddresses/:id", auth(), async (req, res) => {
+    try {
+        const admin = await dbhandler.User.findOne({ where: { Id: req.uid } });
+        if (!admin || !admin.isAdmin) return res.status(403).send("Nincs jogosultság");
+
+        const shipping = await dbhandler.Address.findAll({ where: { UserId: req.params.id } });
+        const billing = await dbhandler.BillingAddress.findAll({ where: { UserId: req.params.id } });
+
+        res.status(200).json({ shipping, billing });
+    } catch (err) {
+        res.status(500).json({ message: "Hiba a címek lekérésekor" });
+    }
+});
 
 
 
