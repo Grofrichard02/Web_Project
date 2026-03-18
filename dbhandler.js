@@ -33,6 +33,25 @@ const UserTable = dbhandler.define("User", {
     },
 });
 
+const CompanyTable = dbhandler.define("Company", {
+    Id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
+    Name: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    Description: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    Location: {
+        type: DataTypes.STRING,
+        allowNull: false
+    }
+});
 
 
 
