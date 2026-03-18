@@ -41,5 +41,32 @@ router.post("/createOrder", Auth(), async (req, res) => {
         });
     }
 });
+router.get("/getMyOrders", Auth(), async (req, res) => {
+    try {
+        if (!dbhandler.Order || !dbhandler.OrderItem || !dbhandler.Products) {
+            return res.status(500).json({ message: "Adatbázis konfigurációs hiba" });
+        }
 
+        const orders = await dbhandler.Order.findAll({
+            where: { UserId: req.uid },
+            include: [
+                {
+                    model: dbhandler.OrderItem,
+                    include: [{
+                        model: dbhandler.Products
+                    }]
+                },
+                {
+                    model: dbhandler.Address 
+                }
+            ],
+            order: [['Date', 'DESC']]
+        });
+
+        res.status(200).json(orders);
+
+    } catch (err) {
+        res.status(500).json({ message: "Hiba a rendelések lekérésekor", error: err.message });
+    }
+});
 module.exports = router;
