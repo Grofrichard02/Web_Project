@@ -84,7 +84,18 @@ router.post("/UserRegister", async (req, res) => {
     }
 });
 
+router.get("/getUser", auth(), async (req, res) => {
+    try {
+        const oneUser = await dbhandler.User.findOne({
+            where: { Id: req.uid },
+            attributes: { exclude: ["Password"] }
+        });
 
+        return res.status(200).json(oneUser);
+    } catch (err) {
+        return res.status(500).json({ message: "Szerver hiba" });
+    }
+});
 
 
 
