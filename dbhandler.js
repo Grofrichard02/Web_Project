@@ -175,6 +175,29 @@ const OrderTable = dbhandler.define("Order", {
     }
 });
 
+const OrderItemTable = dbhandler.define("OrderItem", {
+    Id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
+    OrderId: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
+    ProductId: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
+    Quantity: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
+    PriceAtPurchase: { 
+        type: DataTypes.INTEGER,
+        allowNull: false
+    }
+});
 
 
 
