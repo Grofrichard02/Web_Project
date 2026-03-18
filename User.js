@@ -133,6 +133,17 @@ router.get("/getUserAddresses/:id", auth(), async (req, res) => {
 });
 
 
+router.delete("/deleteUser/:id", auth(), async (req, res) => {
+    try {
+        const admin = await dbhandler.User.findOne({ where: { Id: req.uid } });
+        if (!admin || !admin.isAdmin) return res.status(403).send("Nincs jogosultság");
+        if (req.uid == req.params.id) return res.status(400).json({ message: "Saját magadat nem törölheted!" });
+        await dbhandler.User.destroy({ where: { Id: req.params.id } });
+        res.status(200).json({ message: "Sikeres törlés" });
+    } catch (err) {
+        res.status(500).json({ message: "Hiba a törlés során" });
+    }
+});
 
 
 
