@@ -24,6 +24,20 @@ router.post("/postCompany",Auth(),async(req,res)=>{
     }
 })
 
-
+router.get("/getcompany", async (req, res) => {
+    try {
+        await dbhandler.dbhandler.authenticate();
+        const companies = await dbhandler.Company.findAll();
+        if (companies.length === 0) {
+            return res.status(200).json([]);
+        }
+        return res.status(200).json(companies);
+    } catch (err) {
+        return res.status(500).json({ 
+            error: "Adatbázis hiba", 
+            message: err.message 
+        });
+    }
+});
 
 module.exports = router;
