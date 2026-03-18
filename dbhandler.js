@@ -277,4 +277,14 @@ LogTable.belongsTo(OrderTable, {
 });
 
 
-
+module.exports = {
+    dbhandler,
+    User: UserTable,
+    Order: OrderTable,
+    OrderItem: OrderItemTable,
+    Products: ProductsTable,
+    Address: AddressTable,
+    Log: LogTable,
+    Company: CompanyTable,
+    BillingAddress: BillingAddressTable
+};
