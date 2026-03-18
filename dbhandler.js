@@ -110,6 +110,29 @@ const AddressTable = dbhandler.define("Address", {
     }
 });
 
+const BillingAddressTable = dbhandler.define("BillingAddress", {
+    Id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
+    City: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    Zip: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
+    Address1: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    UserId: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    }
+});
 
 
 
